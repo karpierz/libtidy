@@ -24,21 +24,13 @@ from ._platform import CFUNC
 from ._dll      import dll
 
 from ._tidyplatform import *  # noqa
-from ._tidy import TidyAllocator, TidyInputSource, TidyOutputSink
-#include "tidy.h"
+from ._tidy import TidyBuffer, TidyAllocator, TidyInputSource, TidyOutputSink
 
 # A TidyBuffer is chunk of memory that can be used for multiple I/O purposes
 # within Tidy.
 # @ingroup IO
 #
-class TidyBuffer(ct.Structure):
-    _fields_ = [
-    ("allocator", ct.POINTER(TidyAllocator)),  # Memory allocator
-    ("bp",        ct.POINTER(byte)),           # Pointer to bytes
-    ("size",      ct.c_uint),                  # Number of bytes currently in use
-    ("allocated", ct.c_uint),                  # Number of bytes allocated
-    ("next",      ct.c_uint),                  # Offset of current input position
-]
+# TidyBuffer has been moved to _tidy.py due to cyclic rference
 
 # Initialize data structure using the default allocator
 BufInit = CFUNC(None,

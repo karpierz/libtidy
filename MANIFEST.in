@@ -13,12 +13,14 @@ graft docs
 
 graft examples
 prune examples/examples.c
+global-exclude examples/**/*.nok
 
 graft src
 prune src/libtidy/libtidy.h
 
 graft tests
 prune tests/tests.c
+global-exclude tests/**/*.nok
 
 global-exclude \#* \#*/**
 global-exclude .build .build/** .build.* .build.*/**

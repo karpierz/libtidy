@@ -164,6 +164,7 @@ class _TidyMessageArgument(ct.Structure): pass #{ int _opaque; }
 TidyMessageArgument = ct.POINTER(_TidyMessageArgument)
 
 # @} end Opaque group
+
 # MARK: - Memory Allocation
 # **************************************************************************** #
 # @defgroup Memory Memory Allocation
@@ -236,8 +237,11 @@ TidyMessageArgument = ct.POINTER(_TidyMessageArgument)
 # @{
 # **************************************************************************** #
 
-# Forward declarations and typedefs.
-class TidyAllocatorVtbl(ct.Structure): pass
+class TidyAllocatorVtbl(ct.Structure):
+    # This structure is the function table for an allocator.
+    # Note that all functions in this table must be provided.
+    #
+    pass
     
 class TidyAllocator(ct.Structure):
     # Tidy's built-in default allocator.
@@ -245,11 +249,7 @@ class TidyAllocator(ct.Structure):
     ("vtbl", ct.POINTER(TidyAllocatorVtbl)),  # The allocator's function table.
 ]
 
-class TidyAllocatorVtbl(ct.Structure):
-    # This structure is the function table for an allocator. Note that all
-    # functions in this table must be provided.
-    #
-    _fields_ = [
+TidyAllocatorVtbl._fields_ = [
 
     # Called to allocate a block of nBytes of memory
     #
@@ -327,6 +327,7 @@ SetPanicCall = CFUNC(ct.c_bool,
     (1, "fpanic"),))
 
 # @} end Memory group
+
 # MARK: - Basic Operations
 # **************************************************************************** #
 # @defgroup Basic Basic Operations
@@ -596,6 +597,7 @@ SetOutCharEncoding = CFUNC(ct.c_int,
 
 # @}
 # @} end Basic group
+
 # MARK: - Configuration Options
 # **************************************************************************** #
 # @defgroup Configuration Configuration Options
@@ -1236,6 +1238,7 @@ OptGetNextDocLinks = CFUNC(TidyOption,
 
 # @}
 # @} end Configuration group
+
 # MARK: - I/O and Messages
 # **************************************************************************** #
 # @defgroup IO I/O and Messages
@@ -1250,8 +1253,20 @@ OptGetNextDocLinks = CFUNC(TidyOption,
 # @{
 # **************************************************************************** #
 
-# Forward declarations and typedefs.
-class TidyBuffer(ct.Structure): pass
+# TidyBuffer has been moved from _tidybuffio.py due to cyclic rference
+#
+# A TidyBuffer is chunk of memory that can be used for multiple I/O purposes
+# within Tidy.
+# @ingroup IO
+#
+class TidyBuffer(ct.Structure):
+    _fields_ = [
+    ("allocator", ct.POINTER(TidyAllocator)),  # Memory allocator
+    ("bp",        ct.POINTER(byte)),           # Pointer to bytes
+    ("size",      ct.c_uint),                  # Number of bytes currently in use
+    ("allocated", ct.c_uint),                  # Number of bytes allocated
+    ("next",      ct.c_uint),                  # Offset of current input position
+]
 
 # @}
 # @name Input Source
@@ -1870,6 +1885,7 @@ SetPrettyPrinterCallback = CFUNC(ct.c_bool,
 
 # @}
 # @} end IO group
+
 # MARK: - Document Parse
 # **************************************************************************** #
 # @defgroup Parse Document Parse
@@ -1943,6 +1959,7 @@ ParseSource = CFUNC(ct.c_int,
     (1, "source"),))
 
 # @} End Parse group
+
 # MARK: - Diagnostics and Repair
 # **************************************************************************** #
 # @defgroup Clean Diagnostics and Repair
@@ -1981,6 +1998,7 @@ ReportDoctype = CFUNC(ct.c_int,
     (1, "tdoc"),))
 
 # @} end Clean group
+
 # MARK: - Document Save Functions
 # **************************************************************************** #
 # @defgroup Save Document Save Functions
@@ -2069,6 +2087,7 @@ OptSaveSink = CFUNC(ct.c_int,
     (1, "sink"),))
 
 # @} end Save group
+
 # MARK: - Document Tree
 # **************************************************************************** #
 # @defgroup Tree Document Tree
@@ -2172,7 +2191,7 @@ GetBody = CFUNC(TidyNode,
 GetParent = CFUNC(TidyNode,
     TidyNode)(
     ("tidyGetParent", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the child of the indicated node.
 # @param tnod The node to query.
@@ -2181,7 +2200,7 @@ GetParent = CFUNC(TidyNode,
 GetChild = CFUNC(TidyNode,
     TidyNode)(
     ("tidyGetChild", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the next sibling node.
 # @param tnod The node to query.
@@ -2190,7 +2209,7 @@ GetChild = CFUNC(TidyNode,
 GetNext = CFUNC(TidyNode,
     TidyNode)(
     ("tidyGetNext", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the previous sibling node.
 # @param tnod The node to query.
@@ -2199,7 +2218,7 @@ GetNext = CFUNC(TidyNode,
 GetPrev = CFUNC(TidyNode,
     TidyNode)(
     ("tidyGetPrev", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # @}
 # @name Miscellaneous Node Functions
@@ -2213,7 +2232,7 @@ DiscardElement = CFUNC(TidyNode,
     TidyNode)(  # The node to remove
     ("tidyDiscardElement", dll), (
     (1, "tdoc"),
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # @}
 # @name Node Attribute Functions
@@ -2226,7 +2245,7 @@ DiscardElement = CFUNC(TidyNode,
 AttrFirst = CFUNC(TidyAttr,
     TidyNode)(
     ("tidyAttrFirst", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the next attribute.
 # @param tattr The current attribute, so the next one can be returned.
@@ -2262,7 +2281,7 @@ AttrDiscard = CFUNC(None,
     TidyAttr)(  # The attribute to discard.
     ("tidyAttrDiscard", dll), (
     (1, "itdoc"),
-    (1, "tnod"),
+    (1, "tnode"),
     (1, "tattr"),))
 
 # Get the attribute ID given a tidy attribute.
@@ -2290,7 +2309,7 @@ AttrGetById = CFUNC(TidyAttr,
     TidyNode,     # The node to query.
     TidyAttrId)(  # The attribute ID to find.
     ("tidyAttrGetById", dll), (
-    (1, "tnod"),
+    (1, "tnode"),
     (1, "attId"),))
 
 # @}
@@ -2304,7 +2323,7 @@ AttrGetById = CFUNC(TidyAttr,
 NodeGetType = CFUNC(TidyNodeType,
     TidyNode)(
     ("tidyNodeGetType", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the name of the node.
 # @param tnod The node to query.
@@ -2313,7 +2332,7 @@ NodeGetType = CFUNC(TidyNodeType,
 NodeGetName = CFUNC(ctmbstr,
     TidyNode)(
     ("tidyNodeGetName", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Indicates whether or not a node is a text node.
 # @param tnod The node to query.
@@ -2322,7 +2341,7 @@ NodeGetName = CFUNC(ctmbstr,
 NodeIsText = CFUNC(ct.c_bool,
     TidyNode)(
     ("tidyNodeIsText", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Indicates whether or not the node is a propriety type.
 # @result Returns a bool indicating whether or not the node is a proprietary type.
@@ -2332,7 +2351,7 @@ NodeIsProp = CFUNC(ct.c_bool,
     TidyNode)(  # The node to query
     ("tidyNodeIsProp", dll), (
     (1, "tdoc"),
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Indicates whether or not a node represents and HTML header element, such
 # as h1, h2, etc.
@@ -2342,7 +2361,7 @@ NodeIsProp = CFUNC(ct.c_bool,
 NodeIsHeader = CFUNC(ct.c_bool,
     TidyNode)(
     ("tidyNodeIsHeader", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Indicates whether or not the node has text.
 # @result Returns the type of node as TidyNodeType.
@@ -2352,7 +2371,7 @@ NodeHasText = CFUNC(ct.c_bool,
     TidyNode)(  # The node to query.
     ("tidyNodeHasText", dll), (
     (1, "tdoc"),
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Gets the text of a node and places it into the given TidyBuffer.
 # The text will be terminated with a `TidyNewline`.
@@ -2365,7 +2384,7 @@ NodeGetText = CFUNC(ct.c_bool,
     ct.POINTER(TidyBuffer))(  # [out] A TidyBuffer used to receive the node's text.
     ("tidyNodeGetText", dll), (
     (1, "tdoc"),
-    (1, "tnod"),
+    (1, "tnode"),
     (1, "buf"),))
 
 # Get the value of the node. This copies the unescaped value of this node into
@@ -2378,7 +2397,7 @@ NodeGetValue = CFUNC(ct.c_bool,
     ct.POINTER(TidyBuffer))(  # [out] A TidyBuffer used to receive the node's value.
     ("tidyNodeGetValue", dll), (
     (1, "tdoc"),
-    (1, "tnod"),
+    (1, "tnode"),
     (1, "buf"),))
 
 # Get the tag ID of the node.
@@ -2388,7 +2407,7 @@ NodeGetValue = CFUNC(ct.c_bool,
 NodeGetId = CFUNC(TidyTagId,
     TidyNode)(
     ("tidyNodeGetId", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the line number where the node occurs.
 # @param tnod The node to query.
@@ -2397,7 +2416,7 @@ NodeGetId = CFUNC(TidyTagId,
 NodeLine = CFUNC(ct.c_uint,
     TidyNode)(
     ("tidyNodeLine", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # Get the column location of the node.
 # @param tnod The node to query.
@@ -2406,10 +2425,11 @@ NodeLine = CFUNC(ct.c_uint,
 NodeColumn = CFUNC(ct.c_uint,
     TidyNode)(
     ("tidyNodeColumn", dll), (
-    (1, "tnod"),))
+    (1, "tnode"),))
 
 # @}
 # @} end Tree group
+
 # MARK: - Message Key Management
 # **************************************************************************** #
 # @defgroup MessagesKeys Message Key Management
@@ -2482,6 +2502,7 @@ getNextErrorCode = CFUNC(ct.c_uint,
     (1, "iter"),))
 
 # @} end MessagesKeys group
+
 # MARK: - Localization Support
 # **************************************************************************** #
 # @defgroup Localization Localization Support
@@ -2691,6 +2712,7 @@ getNextInstalledLanguage = CFUNC(ctmbstr,
 # @}
 
 # @} end MessagesKeys group
+
 # @} end public_api group
 
 del va_list

@@ -929,7 +929,7 @@ TidyFormatParameterType = ct.c_int
 
 ) = (*range(0, 4), 20)
 
-# @} end group public_enumerations*/
+# @} end group public_enumerations
     
 # MARK: - Public Enumerations (con't)
 # @addtogroup public_enumerations

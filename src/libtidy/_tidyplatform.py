@@ -36,7 +36,7 @@ from ._platform import defined
 #   set ENABLE_CONFIG_FILES to NO. Specify -DTIDY_CONFIG_FILE and/or
 #   -DTIDY_USER_CONFIG_FILE to override the default paths in tidyplatform.h.
 # @note: this section refactored to support #584.
-#===========================================================================*/
+# =============================================================================
 
 # #define ENABLE_CONFIG_FILES
 
