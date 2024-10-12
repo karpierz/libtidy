@@ -44,7 +44,7 @@ import ctypes as ct
 # **************************************************************************** #
 
 # @addtogroup public_enumerations
-    
+
 # @name Configuration Options Enumerations
 #
 # These enumerators are used to define available configuration options and
@@ -65,7 +65,7 @@ import ctypes as ct
 TidyOptionId = ct.c_int
 (
     TidyUnknownOption,            # Unknown option!
-    
+
     TidyAccessibilityCheckLevel,  # Accessibility check level
     TidyAltText,                  # Default text for alt attribute
     TidyAnchorAsName,             # Define anchors as name attributes
@@ -192,18 +192,18 @@ TidyConfigCategory = ct.c_int
 (
     TidyUnknownCategory,   # Unknown Category!
     # Codes for populating TidyConfigCategory enumeration.
-    TidyDiagnostics,       # Diagnostics                        
-    TidyDisplay,           # Affecting screen display           
-    TidyDocumentIO,        # Pertaining to document I/O         
-    TidyEncoding,          # Relating to encoding               
-    TidyFileIO,            # Pertaining to file I/O             
-    TidyMarkupCleanup,     # Cleanup related options            
-    TidyMarkupEntities,    # Entity related options             
-    TidyMarkupRepair,      # Document repair related options    
-    TidyMarkupTeach,       # Teach tidy new things              
-    TidyMarkupXForm,       # Transform HTML one way or another  
-    TidyPrettyPrint,       # Pretty printing options            
-    TidyInternalCategory,  # Option is internal only.           
+    TidyDiagnostics,       # Diagnostics
+    TidyDisplay,           # Affecting screen display
+    TidyDocumentIO,        # Pertaining to document I/O
+    TidyEncoding,          # Relating to encoding
+    TidyFileIO,            # Pertaining to file I/O
+    TidyMarkupCleanup,     # Cleanup related options
+    TidyMarkupEntities,    # Entity related options
+    TidyMarkupRepair,      # Document repair related options
+    TidyMarkupTeach,       # Teach tidy new things
+    TidyMarkupXForm,       # Transform HTML one way or another
+    TidyPrettyPrint,       # Pretty printing options
+    TidyInternalCategory,  # Option is internal only.
 
 ) = range(300, 300 + 13)
 
@@ -252,7 +252,7 @@ TidyUseCustomTagsState = ct.c_int
 
 ) = range(0, 5)
 
-# TidyNewline option values to control output line endings. 
+# TidyNewline option values to control output line endings.
 # @remark This enum's starting value is guaranteed to remain stable.
 #
 TidyLineEnding = ct.c_int
@@ -262,13 +262,13 @@ TidyLineEnding = ct.c_int
     TidyCR,    # Use Macintosh style: CR
 
 ) = range(0, 3)
-    
+
 # TidyEncodingOptions option values specify the input and/or output encoding.
 # @remark This enum's starting value is guaranteed to remain stable.
 #
 TidyEncodingOptions = ct.c_int
 (
-    TidyEncRaw,   
+    TidyEncRaw,
     TidyEncAscii,
     TidyEncLatin0,
     TidyEncLatin1,
@@ -690,7 +690,7 @@ TidyAttrId = ct.c_int
     TidyAttr_XML_LANG,               # XML_LANG=
     TidyAttr_XML_SPACE,              # XML_SPACE=
     TidyAttr_XMLNS,                  # XMLNS=
-       
+
     TidyAttr_EVENT,                  # EVENT=
     TidyAttr_METHODS,                # METHODS=
     TidyAttr_N,                      # N=
@@ -859,15 +859,15 @@ TidyAttrId = ct.c_int
     TidyAttr_RESOURCE,               # RESOURCE=
     TidyAttr_TYPEOF,                 # TYPEOF=
     TidyAttr_VOCAB,                  # VOCAB=
-     
+
     TidyAttr_INTEGRITY,              # INTEGRITY=
-     
+
     TidyAttr_AS,                     # AS=
-     
+
     TidyAttr_XMLNSXLINK,             # svg xmls:xlink="url"
     TidyAttr_SLOT,                   # SLOT=
     TidyAttr_LOADING,                # LOADING=
-     
+
     # SVG paint attributes (SVG 1.1)
     TidyAttr_FILL,                   # FILL=
     TidyAttr_FILLRULE,               # FILLRULE=
@@ -887,7 +887,7 @@ TidyAttrId = ct.c_int
     N_TIDY_ATTRIBS,                  # Must be last
 
 ) = range(0, 347)
-    
+
 # @name I/O and Message Handling Interface
 #
 # Messages used throughout LibTidy and exposed to the public API have
@@ -914,7 +914,7 @@ TidyReportLevel = ct.c_int
 
 ) = range(350, 350 + 10)
 TidyDialogueDoc = TidyDialogueFootnote  # Dialogue: Deprecated (renamed)
-    
+
 # Indicates the data type of a format string parameter used when Tidy
 # emits reports and dialogue as part of the messaging callback functions.
 # See `messageobj.h` for more information on this API.
@@ -930,11 +930,11 @@ TidyFormatParameterType = ct.c_int
 ) = (*range(0, 4), 20)
 
 # @} end group public_enumerations
-    
+
 # MARK: - Public Enumerations (con't)
 # @addtogroup public_enumerations
 
-# @name Messages 
+# @name Messages
 
 # The enumeration contains a list of every possible string that Tidy and the
 # console application can output, _except_ for strings from the following
@@ -955,46 +955,46 @@ tidyStrings = ct.c_int
     # These message codes comprise every possible message that can be output by
     # Tidy that are *not* diagnostic style messages, and are *not* console
     # application specific messages.
-    LINE_COLUMN_STRING,           # line %d column %d                      
-    FN_LINE_COLUMN_STRING,        # %s: line %d column %d                  
-    STRING_DISCARDING,            # discarding                             
-    STRING_ERROR_COUNT_ERROR,     # error and errors                       
-    STRING_ERROR_COUNT_WARNING,   # warning and warnings                   
-    STRING_HELLO_ACCESS,          # Accessibility hello message            
-    STRING_HTML_PROPRIETARY,      # HTML Proprietary                       
-    STRING_PLAIN_TEXT,            # plain text                             
-    STRING_REPLACING,             # replacing                              
-    STRING_SPECIFIED,             # specified                              
-    STRING_XML_DECLARATION,       # XML declaration                        
-    TIDYCUSTOMNO_STRING,          # no                                     
-    TIDYCUSTOMBLOCKLEVEL_STRING,  # block level                            
-    TIDYCUSTOMEMPTY_STRING,       # empty                                  
-    TIDYCUSTOMINLINE_STRING,      # inline                                 
-    TIDYCUSTOMPRE_STRING,         # pre                                    
+    LINE_COLUMN_STRING,           # line %d column %d
+    FN_LINE_COLUMN_STRING,        # %s: line %d column %d
+    STRING_DISCARDING,            # discarding
+    STRING_ERROR_COUNT_ERROR,     # error and errors
+    STRING_ERROR_COUNT_WARNING,   # warning and warnings
+    STRING_HELLO_ACCESS,          # Accessibility hello message
+    STRING_HTML_PROPRIETARY,      # HTML Proprietary
+    STRING_PLAIN_TEXT,            # plain text
+    STRING_REPLACING,             # replacing
+    STRING_SPECIFIED,             # specified
+    STRING_XML_DECLARATION,       # XML declaration
+    TIDYCUSTOMNO_STRING,          # no
+    TIDYCUSTOMBLOCKLEVEL_STRING,  # block level
+    TIDYCUSTOMEMPTY_STRING,       # empty
+    TIDYCUSTOMINLINE_STRING,      # inline
+    TIDYCUSTOMPRE_STRING,         # pre
     # These messages are used to generate additional dialogue style output from
     # Tidy when certain conditions exist, and provide more verbose explanations
     # than the short report.
     FOOTNOTE_TRIM_EMPTY_ELEMENT,
-    TEXT_ACCESS_ADVICE1,        
-    TEXT_ACCESS_ADVICE2,        
-    TEXT_BAD_FORM,              
-    TEXT_BAD_MAIN,              
-    TEXT_HTML_T_ALGORITHM,      
-    TEXT_INVALID_URI,           
-    TEXT_INVALID_UTF16,         
-    TEXT_INVALID_UTF8,          
-    TEXT_M_IMAGE_ALT,           
-    TEXT_M_IMAGE_MAP,           
-    TEXT_M_LINK_ALT,            
-    TEXT_M_SUMMARY,             
-    TEXT_SGML_CHARS,            
-    TEXT_USING_BODY,            
-    TEXT_USING_FONT,            
-    TEXT_USING_FRAMES,          
-    TEXT_USING_LAYER,           
-    TEXT_USING_NOBR,            
-    TEXT_USING_SPACER,          
-    TEXT_VENDOR_CHARS,          
+    TEXT_ACCESS_ADVICE1,
+    TEXT_ACCESS_ADVICE2,
+    TEXT_BAD_FORM,
+    TEXT_BAD_MAIN,
+    TEXT_HTML_T_ALGORITHM,
+    TEXT_INVALID_URI,
+    TEXT_INVALID_UTF16,
+    TEXT_INVALID_UTF8,
+    TEXT_M_IMAGE_ALT,
+    TEXT_M_IMAGE_MAP,
+    TEXT_M_LINK_ALT,
+    TEXT_M_SUMMARY,
+    TEXT_SGML_CHARS,
+    TEXT_USING_BODY,
+    TEXT_USING_FONT,
+    TEXT_USING_FRAMES,
+    TEXT_USING_LAYER,
+    TEXT_USING_NOBR,
+    TEXT_USING_SPACER,
+    TEXT_VENDOR_CHARS,
     TEXT_WINDOWS_CHARS,
     # These messages are used to generate additional dialogue style output from
     # Tidy when certain conditions exist, and provide more verbose explanations
@@ -1003,351 +1003,351 @@ tidyStrings = ct.c_int
     STRING_NEEDS_INTERVENTION,  # TidyDialogueSummary
     STRING_NO_ERRORS,           # TidyDialogueSummary
     STRING_NOT_ALL_SHOWN,       # TidyDialogueSummary
-    TEXT_GENERAL_INFO_PLEA,     # TidyDialogueInfo   
-    TEXT_GENERAL_INFO,          # TidyDialogueInfo   
+    TEXT_GENERAL_INFO_PLEA,     # TidyDialogueInfo
+    TEXT_GENERAL_INFO,          # TidyDialogueInfo
     REPORT_MESSAGE_FIRST,
     # These are report messages, i.e., messages that appear in Tidy's table
     # of errors and warnings.
-    ADDED_MISSING_CHARSET,        
-    ANCHOR_NOT_UNIQUE,            
-    ANCHOR_DUPLICATED,            
-    APOS_UNDEFINED,               
-    ATTR_VALUE_NOT_LCASE,         
-    ATTRIBUTE_IS_NOT_ALLOWED,     
-    ATTRIBUTE_VALUE_REPLACED,     
-    BACKSLASH_IN_URI,             
-    BAD_ATTRIBUTE_VALUE_REPLACED, 
-    BAD_ATTRIBUTE_VALUE,          
-    BAD_CDATA_CONTENT,            
-    BAD_SUMMARY_HTML5,            
-    BAD_SURROGATE_LEAD,           
-    BAD_SURROGATE_PAIR,           
-    BAD_SURROGATE_TAIL,           
-    CANT_BE_NESTED,               
-    COERCE_TO_ENDTAG,             
-    CONTENT_AFTER_BODY,           
-    CUSTOM_TAG_DETECTED,          
-    DISCARDING_UNEXPECTED,        
-    DOCTYPE_AFTER_TAGS,           
-    DUPLICATE_FRAMESET,           
-    ELEMENT_NOT_EMPTY,            
-    ELEMENT_VERS_MISMATCH_ERROR,  
-    ELEMENT_VERS_MISMATCH_WARN,   
-    ENCODING_MISMATCH,            
-    ESCAPED_ILLEGAL_URI,          
-    FILE_CANT_OPEN,               
-    FILE_CANT_OPEN_CFG,           
-    FILE_NOT_FILE,                
-    FIXED_BACKSLASH,              
-    FOUND_STYLE_IN_BODY,          
-    ID_NAME_MISMATCH,             
-    ILLEGAL_NESTING,              
-    ILLEGAL_URI_CODEPOINT,        
-    ILLEGAL_URI_REFERENCE,        
-    INSERTING_AUTO_ATTRIBUTE,     
-    INSERTING_TAG,                
-    INVALID_ATTRIBUTE,            
-    INVALID_NCR,                  
-    INVALID_SGML_CHARS,           
-    INVALID_UTF8,                 
-    INVALID_UTF16,                
-    INVALID_XML_ID,               
-    JOINING_ATTRIBUTE,            
-    MALFORMED_COMMENT,            
-    MALFORMED_COMMENT_DROPPING,   
-    MALFORMED_COMMENT_EOS,        
-    MALFORMED_COMMENT_WARN,       
-    MALFORMED_DOCTYPE,            
-    MISMATCHED_ATTRIBUTE_ERROR,   
-    MISMATCHED_ATTRIBUTE_WARN,    
-    MISSING_ATTR_VALUE,           
-    MISSING_ATTRIBUTE,            
-    MISSING_DOCTYPE,              
-    MISSING_ENDTAG_BEFORE,        
-    MISSING_ENDTAG_FOR,           
-    MISSING_ENDTAG_OPTIONAL,      
-    MISSING_IMAGEMAP,             
-    MISSING_QUOTEMARK,            
-    MISSING_QUOTEMARK_OPEN,       
-    MISSING_SEMICOLON_NCR,        
-    MISSING_SEMICOLON,            
-    MISSING_STARTTAG,             
-    MISSING_TITLE_ELEMENT,        
-    MOVED_STYLE_TO_HEAD,          
-    NESTED_EMPHASIS,              
-    NESTED_QUOTATION,             
-    NEWLINE_IN_URI,               
-    NOFRAMES_CONTENT,             
-    NON_MATCHING_ENDTAG,          
-    OBSOLETE_ELEMENT,             
-    OPTION_REMOVED,               
-    OPTION_REMOVED_APPLIED,       
-    OPTION_REMOVED_UNAPPLIED,     
-    PREVIOUS_LOCATION,            
-    PROPRIETARY_ATTR_VALUE,       
-    PROPRIETARY_ATTRIBUTE,        
-    PROPRIETARY_ELEMENT,          
-    REMOVED_HTML5,                
-    REPEATED_ATTRIBUTE,           
-    REPLACING_ELEMENT,            
-    REPLACING_UNEX_ELEMENT,       
-    SPACE_PRECEDING_XMLDECL,      
+    ADDED_MISSING_CHARSET,
+    ANCHOR_NOT_UNIQUE,
+    ANCHOR_DUPLICATED,
+    APOS_UNDEFINED,
+    ATTR_VALUE_NOT_LCASE,
+    ATTRIBUTE_IS_NOT_ALLOWED,
+    ATTRIBUTE_VALUE_REPLACED,
+    BACKSLASH_IN_URI,
+    BAD_ATTRIBUTE_VALUE_REPLACED,
+    BAD_ATTRIBUTE_VALUE,
+    BAD_CDATA_CONTENT,
+    BAD_SUMMARY_HTML5,
+    BAD_SURROGATE_LEAD,
+    BAD_SURROGATE_PAIR,
+    BAD_SURROGATE_TAIL,
+    CANT_BE_NESTED,
+    COERCE_TO_ENDTAG,
+    CONTENT_AFTER_BODY,
+    CUSTOM_TAG_DETECTED,
+    DISCARDING_UNEXPECTED,
+    DOCTYPE_AFTER_TAGS,
+    DUPLICATE_FRAMESET,
+    ELEMENT_NOT_EMPTY,
+    ELEMENT_VERS_MISMATCH_ERROR,
+    ELEMENT_VERS_MISMATCH_WARN,
+    ENCODING_MISMATCH,
+    ESCAPED_ILLEGAL_URI,
+    FILE_CANT_OPEN,
+    FILE_CANT_OPEN_CFG,
+    FILE_NOT_FILE,
+    FIXED_BACKSLASH,
+    FOUND_STYLE_IN_BODY,
+    ID_NAME_MISMATCH,
+    ILLEGAL_NESTING,
+    ILLEGAL_URI_CODEPOINT,
+    ILLEGAL_URI_REFERENCE,
+    INSERTING_AUTO_ATTRIBUTE,
+    INSERTING_TAG,
+    INVALID_ATTRIBUTE,
+    INVALID_NCR,
+    INVALID_SGML_CHARS,
+    INVALID_UTF8,
+    INVALID_UTF16,
+    INVALID_XML_ID,
+    JOINING_ATTRIBUTE,
+    MALFORMED_COMMENT,
+    MALFORMED_COMMENT_DROPPING,
+    MALFORMED_COMMENT_EOS,
+    MALFORMED_COMMENT_WARN,
+    MALFORMED_DOCTYPE,
+    MISMATCHED_ATTRIBUTE_ERROR,
+    MISMATCHED_ATTRIBUTE_WARN,
+    MISSING_ATTR_VALUE,
+    MISSING_ATTRIBUTE,
+    MISSING_DOCTYPE,
+    MISSING_ENDTAG_BEFORE,
+    MISSING_ENDTAG_FOR,
+    MISSING_ENDTAG_OPTIONAL,
+    MISSING_IMAGEMAP,
+    MISSING_QUOTEMARK,
+    MISSING_QUOTEMARK_OPEN,
+    MISSING_SEMICOLON_NCR,
+    MISSING_SEMICOLON,
+    MISSING_STARTTAG,
+    MISSING_TITLE_ELEMENT,
+    MOVED_STYLE_TO_HEAD,
+    NESTED_EMPHASIS,
+    NESTED_QUOTATION,
+    NEWLINE_IN_URI,
+    NOFRAMES_CONTENT,
+    NON_MATCHING_ENDTAG,
+    OBSOLETE_ELEMENT,
+    OPTION_REMOVED,
+    OPTION_REMOVED_APPLIED,
+    OPTION_REMOVED_UNAPPLIED,
+    PREVIOUS_LOCATION,
+    PROPRIETARY_ATTR_VALUE,
+    PROPRIETARY_ATTRIBUTE,
+    PROPRIETARY_ELEMENT,
+    REMOVED_HTML5,
+    REPEATED_ATTRIBUTE,
+    REPLACING_ELEMENT,
+    REPLACING_UNEX_ELEMENT,
+    SPACE_PRECEDING_XMLDECL,
     STRING_CONTENT_LOOKS,
-    STRING_ARGUMENT_BAD,          
+    STRING_ARGUMENT_BAD,
     STRING_DOCTYPE_GIVEN,
-    STRING_MISSING_MALFORMED,     
-    STRING_MUTING_TYPE,           
+    STRING_MISSING_MALFORMED,
+    STRING_MUTING_TYPE,
     STRING_NO_SYSID,
-    STRING_UNKNOWN_OPTION,        
-    SUSPECTED_MISSING_QUOTE,      
-    TAG_NOT_ALLOWED_IN,           
-    TOO_MANY_ELEMENTS_IN,         
-    TOO_MANY_ELEMENTS,            
-    TRIM_EMPTY_ELEMENT,           
-    UNESCAPED_AMPERSAND,          
-    UNEXPECTED_END_OF_FILE_ATTR,  
-    UNEXPECTED_END_OF_FILE,       
-    UNEXPECTED_ENDTAG_ERR,        
-    UNEXPECTED_ENDTAG_IN,         
-    UNEXPECTED_ENDTAG,            
-    UNEXPECTED_EQUALSIGN,         
-    UNEXPECTED_GT,                
-    UNEXPECTED_QUOTEMARK,         
-    UNKNOWN_ELEMENT_LOOKS_CUSTOM, 
-    UNKNOWN_ELEMENT,              
-    UNKNOWN_ENTITY,               
-    USING_BR_INPLACE_OF,          
-    VENDOR_SPECIFIC_CHARS,        
-    WHITE_IN_URI,                 
-    XML_DECLARATION_DETECTED,     
-    XML_ID_SYNTAX,                
+    STRING_UNKNOWN_OPTION,
+    SUSPECTED_MISSING_QUOTE,
+    TAG_NOT_ALLOWED_IN,
+    TOO_MANY_ELEMENTS_IN,
+    TOO_MANY_ELEMENTS,
+    TRIM_EMPTY_ELEMENT,
+    UNESCAPED_AMPERSAND,
+    UNEXPECTED_END_OF_FILE_ATTR,
+    UNEXPECTED_END_OF_FILE,
+    UNEXPECTED_ENDTAG_ERR,
+    UNEXPECTED_ENDTAG_IN,
+    UNEXPECTED_ENDTAG,
+    UNEXPECTED_EQUALSIGN,
+    UNEXPECTED_GT,
+    UNEXPECTED_QUOTEMARK,
+    UNKNOWN_ELEMENT_LOOKS_CUSTOM,
+    UNKNOWN_ELEMENT,
+    UNKNOWN_ENTITY,
+    USING_BR_INPLACE_OF,
+    VENDOR_SPECIFIC_CHARS,
+    WHITE_IN_URI,
+    XML_DECLARATION_DETECTED,
+    XML_ID_SYNTAX,
     BLANK_TITLE_ELEMENT,
     REPORT_MESSAGE_LAST,
-    # These are report messages added by Tidy's accessibility module. 
+    # These are report messages added by Tidy's accessibility module.
     # Note that commented out items don't have checks for them at this time,
     # and it was probably intended that some test would eventually be written.
-    IMG_MISSING_ALT,                                # [1.1.1.1]  
-    IMG_ALT_SUSPICIOUS_FILENAME,                    # [1.1.1.2]  
-    IMG_ALT_SUSPICIOUS_FILE_SIZE,                   # [1.1.1.3]  
-    IMG_ALT_SUSPICIOUS_PLACEHOLDER,                 # [1.1.1.4]  
-    IMG_ALT_SUSPICIOUS_TOO_LONG,                    # [1.1.1.10] 
-    # IMG_MISSING_ALT_BULLET,                       # [1.1.1.11] 
-    # IMG_MISSING_ALT_H_RULE,                       # [1.1.1.12] 
-    IMG_MISSING_LONGDESC_DLINK,                     # [1.1.2.1]  
-    IMG_MISSING_DLINK,                              # [1.1.2.2]  
-    IMG_MISSING_LONGDESC,                           # [1.1.2.3]  
-    # LONGDESC_NOT_REQUIRED,                        # [1.1.2.5]  
-    IMG_BUTTON_MISSING_ALT,                         # [1.1.3.1]  
-    APPLET_MISSING_ALT,                             # [1.1.4.1]  
-    OBJECT_MISSING_ALT,                             # [1.1.5.1]  
-    AUDIO_MISSING_TEXT_WAV,                         # [1.1.6.1]  
-    AUDIO_MISSING_TEXT_AU,                          # [1.1.6.2]  
-    AUDIO_MISSING_TEXT_AIFF,                        # [1.1.6.3]  
-    AUDIO_MISSING_TEXT_SND,                         # [1.1.6.4]  
-    AUDIO_MISSING_TEXT_RA,                          # [1.1.6.5]  
-    AUDIO_MISSING_TEXT_RM,                          # [1.1.6.6]  
-    FRAME_MISSING_LONGDESC,                         # [1.1.8.1]  
-    AREA_MISSING_ALT,                               # [1.1.9.1]  
-    SCRIPT_MISSING_NOSCRIPT,                        # [1.1.10.1] 
-    ASCII_REQUIRES_DESCRIPTION,                     # [1.1.12.1] 
-    IMG_MAP_SERVER_REQUIRES_TEXT_LINKS,             # [1.2.1.1]  
-    MULTIMEDIA_REQUIRES_TEXT,                       # [1.4.1.1]  
-    IMG_MAP_CLIENT_MISSING_TEXT_LINKS,              # [1.5.1.1]  
-    INFORMATION_NOT_CONVEYED_IMAGE,                 # [2.1.1.1]  
-    INFORMATION_NOT_CONVEYED_APPLET,                # [2.1.1.2]  
-    INFORMATION_NOT_CONVEYED_OBJECT,                # [2.1.1.3]  
-    INFORMATION_NOT_CONVEYED_SCRIPT,                # [2.1.1.4]  
-    INFORMATION_NOT_CONVEYED_INPUT,                 # [2.1.1.5]  
-    COLOR_CONTRAST_TEXT,                            # [2.2.1.1]  
-    COLOR_CONTRAST_LINK,                            # [2.2.1.2]  
-    COLOR_CONTRAST_ACTIVE_LINK,                     # [2.2.1.3]  
-    COLOR_CONTRAST_VISITED_LINK,                    # [2.2.1.4]  
-    DOCTYPE_MISSING,                                # [3.2.1.1]  
-    STYLE_SHEET_CONTROL_PRESENTATION,               # [3.3.1.1]  
-    HEADERS_IMPROPERLY_NESTED,                      # [3.5.1.1]  
-    POTENTIAL_HEADER_BOLD,                          # [3.5.2.1]  
-    POTENTIAL_HEADER_ITALICS,                       # [3.5.2.2]  
-    POTENTIAL_HEADER_UNDERLINE,                     # [3.5.2.3]  
-    HEADER_USED_FORMAT_TEXT,                        # [3.5.3.1]  
-    LIST_USAGE_INVALID_UL,                          # [3.6.1.1]  
-    LIST_USAGE_INVALID_OL,                          # [3.6.1.2]  
-    LIST_USAGE_INVALID_LI,                          # [3.6.1.4]  
-    # INDICATE_CHANGES_IN_LANGUAGE,                 # [4.1.1.1]  
-    LANGUAGE_NOT_IDENTIFIED,                        # [4.3.1.1]  
-    LANGUAGE_INVALID,                               # [4.3.1.1]  
-    DATA_TABLE_MISSING_HEADERS,                     # [5.1.2.1]  
-    DATA_TABLE_MISSING_HEADERS_COLUMN,              # [5.1.2.2]  
-    DATA_TABLE_MISSING_HEADERS_ROW,                 # [5.1.2.3]  
-    DATA_TABLE_REQUIRE_MARKUP_COLUMN_HEADERS,       # [5.2.1.1]  
-    DATA_TABLE_REQUIRE_MARKUP_ROW_HEADERS,          # [5.2.1.2]  
-    LAYOUT_TABLES_LINEARIZE_PROPERLY,               # [5.3.1.1]  
-    LAYOUT_TABLE_INVALID_MARKUP,                    # [5.4.1.1]  
-    TABLE_MISSING_SUMMARY,                          # [5.5.1.1]  
-    TABLE_SUMMARY_INVALID_NULL,                     # [5.5.1.2]  
-    TABLE_SUMMARY_INVALID_SPACES,                   # [5.5.1.3]  
-    TABLE_SUMMARY_INVALID_PLACEHOLDER,              # [5.5.1.6]  
-    TABLE_MISSING_CAPTION,                          # [5.5.2.1]  
-    TABLE_MAY_REQUIRE_HEADER_ABBR,                  # [5.6.1.1]  
-    TABLE_MAY_REQUIRE_HEADER_ABBR_NULL,             # [5.6.1.2]  
-    TABLE_MAY_REQUIRE_HEADER_ABBR_SPACES,           # [5.6.1.3]  
-    STYLESHEETS_REQUIRE_TESTING_LINK,               # [6.1.1.1]  
-    STYLESHEETS_REQUIRE_TESTING_STYLE_ELEMENT,      # [6.1.1.2]  
-    STYLESHEETS_REQUIRE_TESTING_STYLE_ATTR,         # [6.1.1.3]  
-    FRAME_SRC_INVALID,                              # [6.2.1.1]  
-    TEXT_EQUIVALENTS_REQUIRE_UPDATING_APPLET,       # [6.2.2.1]  
-    TEXT_EQUIVALENTS_REQUIRE_UPDATING_SCRIPT,       # [6.2.2.2]  
-    TEXT_EQUIVALENTS_REQUIRE_UPDATING_OBJECT,       # [6.2.2.3]  
-    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_SCRIPT,    # [6.3.1.1]  
-    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_OBJECT,    # [6.3.1.2]  
-    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_EMBED,     # [6.3.1.3]  
-    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_APPLET,    # [6.3.1.4]  
-    FRAME_MISSING_NOFRAMES,                         # [6.5.1.1]  
-    NOFRAMES_INVALID_NO_VALUE,                      # [6.5.1.2]  
-    NOFRAMES_INVALID_CONTENT,                       # [6.5.1.3]  
-    NOFRAMES_INVALID_LINK,                          # [6.5.1.4]  
-    REMOVE_FLICKER_SCRIPT,                          # [7.1.1.1]  
-    REMOVE_FLICKER_OBJECT,                          # [7.1.1.2]  
-    REMOVE_FLICKER_EMBED,                           # [7.1.1.3]  
-    REMOVE_FLICKER_APPLET,                          # [7.1.1.4]  
-    REMOVE_FLICKER_ANIMATED_GIF,                    # [7.1.1.5]  
-    REMOVE_BLINK_MARQUEE,                           # [7.2.1.1]  
-    REMOVE_AUTO_REFRESH,                            # [7.4.1.1]  
-    REMOVE_AUTO_REDIRECT,                           # [7.5.1.1]  
-    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_SCRIPT,  # [8.1.1.1]  
-    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_OBJECT,  # [8.1.1.2]  
-    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_APPLET,  # [8.1.1.3]  
-    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_EMBED,   # [8.1.1.4]  
-    IMAGE_MAP_SERVER_SIDE_REQUIRES_CONVERSION,      # [9.1.1.1]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_DOWN,   # [9.3.1.1]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_UP,     # [9.3.1.2]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_CLICK,        # [9.3.1.3]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_OVER,   # [9.3.1.4]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_OUT,    # [9.3.1.5]  
-    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_MOVE,   # [9.3.1.6]  
-    NEW_WINDOWS_REQUIRE_WARNING_NEW,                # [10.1.1.1] 
-    NEW_WINDOWS_REQUIRE_WARNING_BLANK,              # [10.1.1.2] 
-    # LABEL_NEEDS_REPOSITIONING_BEFORE_INPUT,       # [10.2.1.1] 
-    # LABEL_NEEDS_REPOSITIONING_AFTER_INPUT,        # [10.2.1.2] 
-    # FORM_CONTROL_REQUIRES_DEFAULT_TEXT,           # [10.4.1.1] 
-    # FORM_CONTROL_DEFAULT_TEXT_INVALID_NULL,       # [10.4.1.2] 
-    # FORM_CONTROL_DEFAULT_TEXT_INVALID_SPACES,     # [10.4.1.3] 
-    REPLACE_DEPRECATED_HTML_APPLET,                 # [11.2.1.1] 
-    REPLACE_DEPRECATED_HTML_BASEFONT,               # [11.2.1.2] 
-    REPLACE_DEPRECATED_HTML_CENTER,                 # [11.2.1.3] 
-    REPLACE_DEPRECATED_HTML_DIR,                    # [11.2.1.4] 
-    REPLACE_DEPRECATED_HTML_FONT,                   # [11.2.1.5] 
-    REPLACE_DEPRECATED_HTML_ISINDEX,                # [11.2.1.6] 
-    REPLACE_DEPRECATED_HTML_MENU,                   # [11.2.1.7] 
-    REPLACE_DEPRECATED_HTML_S,                      # [11.2.1.8] 
-    REPLACE_DEPRECATED_HTML_STRIKE,                 # [11.2.1.9] 
+    IMG_MISSING_ALT,                                # [1.1.1.1]
+    IMG_ALT_SUSPICIOUS_FILENAME,                    # [1.1.1.2]
+    IMG_ALT_SUSPICIOUS_FILE_SIZE,                   # [1.1.1.3]
+    IMG_ALT_SUSPICIOUS_PLACEHOLDER,                 # [1.1.1.4]
+    IMG_ALT_SUSPICIOUS_TOO_LONG,                    # [1.1.1.10]
+    # IMG_MISSING_ALT_BULLET,                       # [1.1.1.11]
+    # IMG_MISSING_ALT_H_RULE,                       # [1.1.1.12]
+    IMG_MISSING_LONGDESC_DLINK,                     # [1.1.2.1]
+    IMG_MISSING_DLINK,                              # [1.1.2.2]
+    IMG_MISSING_LONGDESC,                           # [1.1.2.3]
+    # LONGDESC_NOT_REQUIRED,                        # [1.1.2.5]
+    IMG_BUTTON_MISSING_ALT,                         # [1.1.3.1]
+    APPLET_MISSING_ALT,                             # [1.1.4.1]
+    OBJECT_MISSING_ALT,                             # [1.1.5.1]
+    AUDIO_MISSING_TEXT_WAV,                         # [1.1.6.1]
+    AUDIO_MISSING_TEXT_AU,                          # [1.1.6.2]
+    AUDIO_MISSING_TEXT_AIFF,                        # [1.1.6.3]
+    AUDIO_MISSING_TEXT_SND,                         # [1.1.6.4]
+    AUDIO_MISSING_TEXT_RA,                          # [1.1.6.5]
+    AUDIO_MISSING_TEXT_RM,                          # [1.1.6.6]
+    FRAME_MISSING_LONGDESC,                         # [1.1.8.1]
+    AREA_MISSING_ALT,                               # [1.1.9.1]
+    SCRIPT_MISSING_NOSCRIPT,                        # [1.1.10.1]
+    ASCII_REQUIRES_DESCRIPTION,                     # [1.1.12.1]
+    IMG_MAP_SERVER_REQUIRES_TEXT_LINKS,             # [1.2.1.1]
+    MULTIMEDIA_REQUIRES_TEXT,                       # [1.4.1.1]
+    IMG_MAP_CLIENT_MISSING_TEXT_LINKS,              # [1.5.1.1]
+    INFORMATION_NOT_CONVEYED_IMAGE,                 # [2.1.1.1]
+    INFORMATION_NOT_CONVEYED_APPLET,                # [2.1.1.2]
+    INFORMATION_NOT_CONVEYED_OBJECT,                # [2.1.1.3]
+    INFORMATION_NOT_CONVEYED_SCRIPT,                # [2.1.1.4]
+    INFORMATION_NOT_CONVEYED_INPUT,                 # [2.1.1.5]
+    COLOR_CONTRAST_TEXT,                            # [2.2.1.1]
+    COLOR_CONTRAST_LINK,                            # [2.2.1.2]
+    COLOR_CONTRAST_ACTIVE_LINK,                     # [2.2.1.3]
+    COLOR_CONTRAST_VISITED_LINK,                    # [2.2.1.4]
+    DOCTYPE_MISSING,                                # [3.2.1.1]
+    STYLE_SHEET_CONTROL_PRESENTATION,               # [3.3.1.1]
+    HEADERS_IMPROPERLY_NESTED,                      # [3.5.1.1]
+    POTENTIAL_HEADER_BOLD,                          # [3.5.2.1]
+    POTENTIAL_HEADER_ITALICS,                       # [3.5.2.2]
+    POTENTIAL_HEADER_UNDERLINE,                     # [3.5.2.3]
+    HEADER_USED_FORMAT_TEXT,                        # [3.5.3.1]
+    LIST_USAGE_INVALID_UL,                          # [3.6.1.1]
+    LIST_USAGE_INVALID_OL,                          # [3.6.1.2]
+    LIST_USAGE_INVALID_LI,                          # [3.6.1.4]
+    # INDICATE_CHANGES_IN_LANGUAGE,                 # [4.1.1.1]
+    LANGUAGE_NOT_IDENTIFIED,                        # [4.3.1.1]
+    LANGUAGE_INVALID,                               # [4.3.1.1]
+    DATA_TABLE_MISSING_HEADERS,                     # [5.1.2.1]
+    DATA_TABLE_MISSING_HEADERS_COLUMN,              # [5.1.2.2]
+    DATA_TABLE_MISSING_HEADERS_ROW,                 # [5.1.2.3]
+    DATA_TABLE_REQUIRE_MARKUP_COLUMN_HEADERS,       # [5.2.1.1]
+    DATA_TABLE_REQUIRE_MARKUP_ROW_HEADERS,          # [5.2.1.2]
+    LAYOUT_TABLES_LINEARIZE_PROPERLY,               # [5.3.1.1]
+    LAYOUT_TABLE_INVALID_MARKUP,                    # [5.4.1.1]
+    TABLE_MISSING_SUMMARY,                          # [5.5.1.1]
+    TABLE_SUMMARY_INVALID_NULL,                     # [5.5.1.2]
+    TABLE_SUMMARY_INVALID_SPACES,                   # [5.5.1.3]
+    TABLE_SUMMARY_INVALID_PLACEHOLDER,              # [5.5.1.6]
+    TABLE_MISSING_CAPTION,                          # [5.5.2.1]
+    TABLE_MAY_REQUIRE_HEADER_ABBR,                  # [5.6.1.1]
+    TABLE_MAY_REQUIRE_HEADER_ABBR_NULL,             # [5.6.1.2]
+    TABLE_MAY_REQUIRE_HEADER_ABBR_SPACES,           # [5.6.1.3]
+    STYLESHEETS_REQUIRE_TESTING_LINK,               # [6.1.1.1]
+    STYLESHEETS_REQUIRE_TESTING_STYLE_ELEMENT,      # [6.1.1.2]
+    STYLESHEETS_REQUIRE_TESTING_STYLE_ATTR,         # [6.1.1.3]
+    FRAME_SRC_INVALID,                              # [6.2.1.1]
+    TEXT_EQUIVALENTS_REQUIRE_UPDATING_APPLET,       # [6.2.2.1]
+    TEXT_EQUIVALENTS_REQUIRE_UPDATING_SCRIPT,       # [6.2.2.2]
+    TEXT_EQUIVALENTS_REQUIRE_UPDATING_OBJECT,       # [6.2.2.3]
+    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_SCRIPT,    # [6.3.1.1]
+    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_OBJECT,    # [6.3.1.2]
+    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_EMBED,     # [6.3.1.3]
+    PROGRAMMATIC_OBJECTS_REQUIRE_TESTING_APPLET,    # [6.3.1.4]
+    FRAME_MISSING_NOFRAMES,                         # [6.5.1.1]
+    NOFRAMES_INVALID_NO_VALUE,                      # [6.5.1.2]
+    NOFRAMES_INVALID_CONTENT,                       # [6.5.1.3]
+    NOFRAMES_INVALID_LINK,                          # [6.5.1.4]
+    REMOVE_FLICKER_SCRIPT,                          # [7.1.1.1]
+    REMOVE_FLICKER_OBJECT,                          # [7.1.1.2]
+    REMOVE_FLICKER_EMBED,                           # [7.1.1.3]
+    REMOVE_FLICKER_APPLET,                          # [7.1.1.4]
+    REMOVE_FLICKER_ANIMATED_GIF,                    # [7.1.1.5]
+    REMOVE_BLINK_MARQUEE,                           # [7.2.1.1]
+    REMOVE_AUTO_REFRESH,                            # [7.4.1.1]
+    REMOVE_AUTO_REDIRECT,                           # [7.5.1.1]
+    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_SCRIPT,  # [8.1.1.1]
+    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_OBJECT,  # [8.1.1.2]
+    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_APPLET,  # [8.1.1.3]
+    ENSURE_PROGRAMMATIC_OBJECTS_ACCESSIBLE_EMBED,   # [8.1.1.4]
+    IMAGE_MAP_SERVER_SIDE_REQUIRES_CONVERSION,      # [9.1.1.1]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_DOWN,   # [9.3.1.1]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_UP,     # [9.3.1.2]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_CLICK,        # [9.3.1.3]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_OVER,   # [9.3.1.4]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_OUT,    # [9.3.1.5]
+    SCRIPT_NOT_KEYBOARD_ACCESSIBLE_ON_MOUSE_MOVE,   # [9.3.1.6]
+    NEW_WINDOWS_REQUIRE_WARNING_NEW,                # [10.1.1.1]
+    NEW_WINDOWS_REQUIRE_WARNING_BLANK,              # [10.1.1.2]
+    # LABEL_NEEDS_REPOSITIONING_BEFORE_INPUT,       # [10.2.1.1]
+    # LABEL_NEEDS_REPOSITIONING_AFTER_INPUT,        # [10.2.1.2]
+    # FORM_CONTROL_REQUIRES_DEFAULT_TEXT,           # [10.4.1.1]
+    # FORM_CONTROL_DEFAULT_TEXT_INVALID_NULL,       # [10.4.1.2]
+    # FORM_CONTROL_DEFAULT_TEXT_INVALID_SPACES,     # [10.4.1.3]
+    REPLACE_DEPRECATED_HTML_APPLET,                 # [11.2.1.1]
+    REPLACE_DEPRECATED_HTML_BASEFONT,               # [11.2.1.2]
+    REPLACE_DEPRECATED_HTML_CENTER,                 # [11.2.1.3]
+    REPLACE_DEPRECATED_HTML_DIR,                    # [11.2.1.4]
+    REPLACE_DEPRECATED_HTML_FONT,                   # [11.2.1.5]
+    REPLACE_DEPRECATED_HTML_ISINDEX,                # [11.2.1.6]
+    REPLACE_DEPRECATED_HTML_MENU,                   # [11.2.1.7]
+    REPLACE_DEPRECATED_HTML_S,                      # [11.2.1.8]
+    REPLACE_DEPRECATED_HTML_STRIKE,                 # [11.2.1.9]
     REPLACE_DEPRECATED_HTML_U,                      # [11.2.1.10]
-    FRAME_MISSING_TITLE,                            # [12.1.1.1] 
-    FRAME_TITLE_INVALID_NULL,                       # [12.1.1.2] 
-    FRAME_TITLE_INVALID_SPACES,                     # [12.1.1.3] 
-    ASSOCIATE_LABELS_EXPLICITLY,                    # [12.4.1.1] 
-    ASSOCIATE_LABELS_EXPLICITLY_FOR,                # [12.4.1.2] 
-    ASSOCIATE_LABELS_EXPLICITLY_ID,                 # [12.4.1.3] 
-    LINK_TEXT_NOT_MEANINGFUL,                       # [13.1.1.1] 
-    LINK_TEXT_MISSING,                              # [13.1.1.2] 
-    LINK_TEXT_TOO_LONG,                             # [13.1.1.3] 
-    LINK_TEXT_NOT_MEANINGFUL_CLICK_HERE,            # [13.1.1.4] 
-    # LINK_TEXT_NOT_MEANINGFUL_MORE,                # [13.1.1.5] 
-    # LINK_TEXT_NOT_MEANINGFUL_FOLLOW_THIS,         # [13.1.1.6] 
-    METADATA_MISSING,                               # [13.2.1.1] 
-    # METADATA_MISSING_LINK,                        # [13.2.1.2] 
-    METADATA_MISSING_REDIRECT_AUTOREFRESH,          # [13.2.1.3] 
+    FRAME_MISSING_TITLE,                            # [12.1.1.1]
+    FRAME_TITLE_INVALID_NULL,                       # [12.1.1.2]
+    FRAME_TITLE_INVALID_SPACES,                     # [12.1.1.3]
+    ASSOCIATE_LABELS_EXPLICITLY,                    # [12.4.1.1]
+    ASSOCIATE_LABELS_EXPLICITLY_FOR,                # [12.4.1.2]
+    ASSOCIATE_LABELS_EXPLICITLY_ID,                 # [12.4.1.3]
+    LINK_TEXT_NOT_MEANINGFUL,                       # [13.1.1.1]
+    LINK_TEXT_MISSING,                              # [13.1.1.2]
+    LINK_TEXT_TOO_LONG,                             # [13.1.1.3]
+    LINK_TEXT_NOT_MEANINGFUL_CLICK_HERE,            # [13.1.1.4]
+    # LINK_TEXT_NOT_MEANINGFUL_MORE,                # [13.1.1.5]
+    # LINK_TEXT_NOT_MEANINGFUL_FOLLOW_THIS,         # [13.1.1.6]
+    METADATA_MISSING,                               # [13.2.1.1]
+    # METADATA_MISSING_LINK,                        # [13.2.1.2]
+    METADATA_MISSING_REDIRECT_AUTOREFRESH,          # [13.2.1.3]
     SKIPOVER_ASCII_ART,                             # [13.10.1.1]
 
     #if SUPPORT_CONSOLE_APP
     # These message codes comprise every message is exclusive to theTidy console
     # application. It it possible to build LibTidy without these strings.
-    TC_LABEL_COL,                
-    TC_LABEL_FILE,               
-    TC_LABEL_LANG,               
-    TC_LABEL_LEVL,               
-    TC_LABEL_OPT,                
-    TC_MAIN_ERROR_LOAD_CONFIG,   
-    TC_OPT_ACCESS,               
-    TC_OPT_ASCII,                
-    TC_OPT_ASHTML,               
-    TC_OPT_ASXML,                
-    TC_OPT_BARE,                 
-    TC_OPT_BIG5,                 
-    TC_OPT_CLEAN,                
-    TC_OPT_CONFIG,               
-    TC_OPT_ERRORS,               
-    TC_OPT_FILE,                 
-    TC_OPT_GDOC,                 
-    TC_OPT_HELP,                 
-    TC_OPT_HELPCFG,              
-    TC_OPT_HELPENV,              
-    TC_OPT_HELPOPT,              
-    TC_OPT_IBM858,               
-    TC_OPT_INDENT,               
-    TC_OPT_ISO2022,              
-    TC_OPT_LANGUAGE,             
-    TC_OPT_LATIN0,               
-    TC_OPT_LATIN1,               
-    TC_OPT_MAC,                  
-    TC_OPT_MODIFY,               
-    TC_OPT_NUMERIC,              
-    TC_OPT_OMIT,                 
-    TC_OPT_OUTPUT,               
-    TC_OPT_QUIET,                
-    TC_OPT_RAW,                  
-    TC_OPT_SHIFTJIS,             
-    TC_OPT_SHOWCFG,              
-    TC_OPT_EXP_CFG,              
-    TC_OPT_EXP_DEF,              
-    TC_OPT_UPPER,                
-    TC_OPT_UTF16,                
-    TC_OPT_UTF16BE,              
-    TC_OPT_UTF16LE,              
-    TC_OPT_UTF8,                 
-    TC_OPT_VERSION,              
-    TC_OPT_WIN1252,              
-    TC_OPT_WRAP,                 
-    TC_OPT_XML,                  
-    TC_OPT_XMLCFG,               
-    TC_OPT_XMLSTRG,              
-    TC_OPT_XMLERRS,              
-    TC_OPT_XMLOPTS,              
-    TC_OPT_XMLHELP,              
-    TC_STRING_CONF_HEADER,       
-    TC_STRING_CONF_NAME,         
-    TC_STRING_CONF_TYPE,         
-    TC_STRING_CONF_VALUE,        
-    TC_STRING_CONF_NOTE,         
+    TC_LABEL_COL,
+    TC_LABEL_FILE,
+    TC_LABEL_LANG,
+    TC_LABEL_LEVL,
+    TC_LABEL_OPT,
+    TC_MAIN_ERROR_LOAD_CONFIG,
+    TC_OPT_ACCESS,
+    TC_OPT_ASCII,
+    TC_OPT_ASHTML,
+    TC_OPT_ASXML,
+    TC_OPT_BARE,
+    TC_OPT_BIG5,
+    TC_OPT_CLEAN,
+    TC_OPT_CONFIG,
+    TC_OPT_ERRORS,
+    TC_OPT_FILE,
+    TC_OPT_GDOC,
+    TC_OPT_HELP,
+    TC_OPT_HELPCFG,
+    TC_OPT_HELPENV,
+    TC_OPT_HELPOPT,
+    TC_OPT_IBM858,
+    TC_OPT_INDENT,
+    TC_OPT_ISO2022,
+    TC_OPT_LANGUAGE,
+    TC_OPT_LATIN0,
+    TC_OPT_LATIN1,
+    TC_OPT_MAC,
+    TC_OPT_MODIFY,
+    TC_OPT_NUMERIC,
+    TC_OPT_OMIT,
+    TC_OPT_OUTPUT,
+    TC_OPT_QUIET,
+    TC_OPT_RAW,
+    TC_OPT_SHIFTJIS,
+    TC_OPT_SHOWCFG,
+    TC_OPT_EXP_CFG,
+    TC_OPT_EXP_DEF,
+    TC_OPT_UPPER,
+    TC_OPT_UTF16,
+    TC_OPT_UTF16BE,
+    TC_OPT_UTF16LE,
+    TC_OPT_UTF8,
+    TC_OPT_VERSION,
+    TC_OPT_WIN1252,
+    TC_OPT_WRAP,
+    TC_OPT_XML,
+    TC_OPT_XMLCFG,
+    TC_OPT_XMLSTRG,
+    TC_OPT_XMLERRS,
+    TC_OPT_XMLOPTS,
+    TC_OPT_XMLHELP,
+    TC_STRING_CONF_HEADER,
+    TC_STRING_CONF_NAME,
+    TC_STRING_CONF_TYPE,
+    TC_STRING_CONF_VALUE,
+    TC_STRING_CONF_NOTE,
     TC_STRING_OPT_NOT_DOCUMENTED,
-    TC_STRING_OUT_OF_MEMORY,     
-    TC_STRING_FATAL_ERROR,       
-    TC_STRING_FILE_MANIP,        
-    TC_STRING_LANG_MUST_SPECIFY, 
-    TC_STRING_LANG_NOT_FOUND,    
-    TC_STRING_MUST_SPECIFY,      
+    TC_STRING_OUT_OF_MEMORY,
+    TC_STRING_FATAL_ERROR,
+    TC_STRING_FILE_MANIP,
+    TC_STRING_LANG_MUST_SPECIFY,
+    TC_STRING_LANG_NOT_FOUND,
+    TC_STRING_MUST_SPECIFY,
     TC_STRING_PROCESS_DIRECTIVES,
-    TC_STRING_CHAR_ENCODING,     
-    TC_STRING_MISC,              
-    TC_STRING_XML,               
-    TC_STRING_UNKNOWN_OPTION,    
-    TC_STRING_UNKNOWN_OPTION_B,  
-    TC_STRING_VERS_A,            
-    TC_STRING_VERS_B,            
-    TC_TXT_HELP_1,               
-    TC_TXT_HELP_2A,              
-    TC_TXT_HELP_2B,              
-    TC_TXT_HELP_3,               
-    TC_TXT_HELP_3A,              
-    TC_TXT_HELP_CONFIG,          
-    TC_TXT_HELP_CONFIG_NAME,     
-    TC_TXT_HELP_CONFIG_TYPE,     
-    TC_TXT_HELP_CONFIG_ALLW,     
-    TC_TXT_HELP_ENV_1,           
-    TC_TXT_HELP_ENV_1A,          
-    TC_TXT_HELP_ENV_1B,          
-    TC_TXT_HELP_ENV_1C,          
-    TC_TXT_HELP_LANG_1,          
-    TC_TXT_HELP_LANG_2,          
+    TC_STRING_CHAR_ENCODING,
+    TC_STRING_MISC,
+    TC_STRING_XML,
+    TC_STRING_UNKNOWN_OPTION,
+    TC_STRING_UNKNOWN_OPTION_B,
+    TC_STRING_VERS_A,
+    TC_STRING_VERS_B,
+    TC_TXT_HELP_1,
+    TC_TXT_HELP_2A,
+    TC_TXT_HELP_2B,
+    TC_TXT_HELP_3,
+    TC_TXT_HELP_3A,
+    TC_TXT_HELP_CONFIG,
+    TC_TXT_HELP_CONFIG_NAME,
+    TC_TXT_HELP_CONFIG_TYPE,
+    TC_TXT_HELP_CONFIG_ALLW,
+    TC_TXT_HELP_ENV_1,
+    TC_TXT_HELP_ENV_1A,
+    TC_TXT_HELP_ENV_1B,
+    TC_TXT_HELP_ENV_1C,
+    TC_TXT_HELP_LANG_1,
+    TC_TXT_HELP_LANG_2,
     TC_TXT_HELP_LANG_3,
     #endif # SUPPORT_CONSOLE_APP #
 

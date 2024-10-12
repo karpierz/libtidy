@@ -49,7 +49,7 @@ BufInitWithAllocator = CFUNC(None,
 # Free current buffer, allocate given amount, reset input pointer,
 # use the default allocator
 BufAlloc = CFUNC(None,
-    ct.POINTER(TidyBuffer), 
+    ct.POINTER(TidyBuffer),
     ct.c_uint)(
     ("tidyBufAlloc", dll), (
     (1, "buf"),
@@ -58,15 +58,15 @@ BufAlloc = CFUNC(None,
 # Free current buffer, allocate given amount, reset input pointer,
 # use the given custom allocator
 BufAllocWithAllocator = CFUNC(None,
-    ct.POINTER(TidyBuffer),    
-    ct.POINTER(TidyAllocator), 
+    ct.POINTER(TidyBuffer),
+    ct.POINTER(TidyAllocator),
     ct.c_uint)(
     ("tidyBufAllocWithAllocator", dll), (
     (1, "buf"),
     (1, "allocator"),
     (1, "allocSize"),))
 
-# Expand buffer to given size. 
+# Expand buffer to given size.
 # Chunk size is minimum growth. Pass 0 for default of 256 bytes.
 BufCheckAlloc = CFUNC(None,
     ct.POINTER(TidyBuffer),
@@ -91,9 +91,9 @@ BufClear = CFUNC(None,
 
 # Attach to existing buffer
 BufAttach = CFUNC(None,
-    ct.POINTER(TidyBuffer), 
-    ct.POINTER(byte),       
-    ct.c_uint)(             
+    ct.POINTER(TidyBuffer),
+    ct.POINTER(byte),
+    ct.c_uint)(
     ("tidyBufAttach", dll), (
     (1, "buf"),
     (1, "bp"),
@@ -144,7 +144,7 @@ BufEndOfInput = CFUNC(ct.c_bool,
 # Put a byte back into the buffer.  Decrement input offset.
 BufUngetByte = CFUNC(None,
     ct.POINTER(TidyBuffer),
-    byte)(                 
+    byte)(
     ("tidyBufUngetByte", dll), (
     (1, "buf"),
     (1, "bv"),))

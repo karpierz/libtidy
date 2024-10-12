@@ -76,7 +76,7 @@ from ._platform import defined
 #ifndef SUPPORT_LOCALIZATIONS
 #  define SUPPORT_LOCALIZATIONS 1
 #endif
-    
+
 # Enable/disable support for console
 #ifndef SUPPORT_CONSOLE_APP
 #  define SUPPORT_CONSOLE_APP 1
@@ -239,7 +239,7 @@ from ._platform import defined
 #endif
 
 # === Convenience defines for Solaris platforms ===
- 
+
 #if defined(sun)
 #  define SOLARIS_OS
 #  ifndef PLATFORM_NAME
@@ -440,7 +440,7 @@ from ._platform import defined
 #
 # WINDOWS automatically set by Win16 compilers.
 # _WIN32 automatically set by Win32 compilers.
- 
+
 #  if defined(_WIN32) && !defined(__MSL__) && !defined(__BORLANDC__)
 #    define futime _futime
 #    define fstat _fstat
@@ -512,7 +512,7 @@ NULLSTR = ct.c_char_p(b"")
 
 # `bool` is a reserved word in some but not all C++ compilers depending on age.
 # age. Work around is to avoid bool by introducing a new enum called `Bool`.
-    
+
 # We could use the C99 definition where supported
 # typedef _Bool Bool;
 # #define no (_Bool)0
@@ -524,7 +524,7 @@ no  = False
 yes = True
 #} Bool;
 
-# for NULL pointers 
+# for NULL pointers
 # #define null ((const void*)0)
 # extern ct.c_void_p null;
 

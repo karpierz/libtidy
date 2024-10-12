@@ -17,8 +17,8 @@
 #
 # @author  Dave Raggett [dsr@w3.org]
 # @author  HTACG, et al (consult git log)
-# 
-# @remarks The contributing author(s) would like to thank all those who 
+#
+# @remarks The contributing author(s) would like to thank all those who
 #          helped with testing, bug fixes and suggestions for improvements.
 #          This wouldn't have been possible without your help.
 #
@@ -29,9 +29,9 @@
 # @par
 #     All Rights Reserved.
 # @par
-#     This software and documentation is provided "as is," and the copyright 
+#     This software and documentation is provided "as is," and the copyright
 #     holders and contributing author(s) make no representations or warranties,
-#     express or implied, including but not limited to, warranties of 
+#     express or implied, including but not limited to, warranties of
 #     merchantability or fitness for any particular purpose or that the use of
 #     the software or documentation will not infringe any third party patents,
 #     copyrights, trademarks or other rights.
@@ -76,7 +76,7 @@ from ._tidyenum     import (TidyOptionId, TidyConfigCategory, TidyTagId,
 class FILE(ct.Structure): pass
 
 va_list = ct.c_void_p  # temporary
-    
+
 # **************************************************************************** #
 # @defgroup internal_api Internal API
 # The Internal API is used exclusively within LibTidy. If you are an
@@ -95,7 +95,7 @@ va_list = ct.c_void_p  # temporary
 
 # **************************************************************************** #
 # @defgroup public_api External Public API
-# The Public API is the API that LibTidy programmers must access in order 
+# The Public API is the API that LibTidy programmers must access in order
 # to harness HTML Tidy as a library. The API limits all exposure to internal
 # structures and provides only accessors that return simple types such as
 # C strings and integers, which makes it quite suitable for integration with
@@ -242,7 +242,7 @@ class TidyAllocatorVtbl(ct.Structure):
     # Note that all functions in this table must be provided.
     #
     pass
-    
+
 class TidyAllocator(ct.Structure):
     # Tidy's built-in default allocator.
     _fields_ = [
@@ -264,7 +264,7 @@ TidyAllocatorVtbl._fields_ = [
                       ct.POINTER(TidyAllocator),  # self,  # The TidyAllocator to use to realloc memory.
                       ct.c_void_p,                # block  # The pointer to the existing block.
                       ct.c_size_t)),              # nBytes # The number of bytes to allocate.
-    
+
     # Called to free a previously allocated block of memory.
     #
     ("free",    CFUNC(None,
@@ -277,7 +277,7 @@ TidyAllocatorVtbl._fields_ = [
     # called if an error is detected in the tree integrity via the internal
     # function CheckNodeIntegrity(). This is a situation that can only arise
     # in the case of a programming error in LibTidy. You can turn off node
-    # integrity checking by defining the constant `NO_NODE_INTEGRITY_CHECK` 
+    # integrity checking by defining the constant `NO_NODE_INTEGRITY_CHECK`
     # during the build.
     #
     ("panic",   CFUNC(None,
@@ -341,7 +341,7 @@ SetPanicCall = CFUNC(ct.c_bool,
 
 # @name Instantiation and Destruction
 # @{
-    
+
 # The primary creation of a document instance. Instances of a TidyDoc are used
 # throughout the API as a token to represent a particular document. You must
 # create at least one TidyDoc instance to initialize the library and begin
@@ -363,7 +363,7 @@ CreateWithAllocator = CFUNC(TidyDoc,
     ("tidyCreateWithAllocator", dll), (
     (1, "allocator"),))
 
-# Free all memory and release the TidyDoc. The TidyDoc can not be used after 
+# Free all memory and release the TidyDoc. The TidyDoc can not be used after
 # this call.
 # @param tdoc The TidyDoc to free.
 #
@@ -375,7 +375,7 @@ Release = CFUNC(None,
 # @}
 # @name Host Application Data
 # @{
- 
+
 # Allows the host application to store a chunk of data with each TidyDoc
 # instance. This can be useful for callbacks, such as saving a reference to
 # `self` within the document.
@@ -389,7 +389,7 @@ SetAppData = CFUNC(None,
 
 # Returns the data previously stored with `tidySetAppData()`.
 # @param tdoc  document where data has been stored.
-# @result The pointer to the data block previously stored. 
+# @result The pointer to the data block previously stored.
 #
 GetAppData = CFUNC(ct.c_void_p,
     TidyDoc)(
@@ -399,7 +399,7 @@ GetAppData = CFUNC(ct.c_void_p,
 # @}
 # @name LibTidy Version Information
 # @{
-    
+
 # Get the release date for the current library.
 # @result The string representing the release date.
 #
@@ -417,11 +417,11 @@ LibraryVersion = CFUNC(ctmbstr)(
 #
 Platform = CFUNC(ctmbstr)(
     ("tidyPlatform", dll),)
-    
+
 # @}
 # @name Diagnostics and Repair
 # @{
-    
+
 # Get status of current document.
 # @param tdoc An instance of a TidyDoc to query.
 # @result Returns the highest of `2` indicating that errors were present in
@@ -520,7 +520,7 @@ GeneralInfo = CFUNC(None,
 # @}
 # @name Configuration, File, and Encoding Operations
 # @{
-    
+
 # Load an ASCII Tidy configuration file and set the configuration per its
 # contents. Reports config option errors, which can be filtered.
 # @result Returns 0 upon success, or any other value if there was an option error.
@@ -560,7 +560,7 @@ FileExists = CFUNC(ct.c_bool,
 # include `ascii`, `latin1`, `raw`, `utf8`, `iso2022`, `mac`, `win1252`,
 # `utf16le`, `utf16be`, `utf16`, `big5`, and `shiftjis`. These values are not
 # case sensitive.
-# @note This is the same as using TidySetInCharEncoding() and 
+# @note This is the same as using TidySetInCharEncoding() and
 #       TidySetOutCharEncoding() to set the same value.
 # @result Returns 0 upon success, or a system standard error number `EINVAL`.
 #
@@ -571,7 +571,7 @@ SetCharEncoding = CFUNC(ct.c_int,
     (1, "tdoc"),
     (1, "encnam"),))
 
-# Set the input encoding for parsing markup.  Valid values include `ascii`, 
+# Set the input encoding for parsing markup.  Valid values include `ascii`,
 # `latin1`, `raw`, `utf8`, `iso2022`, `mac`, `win1252`, `utf16le`, `utf16be`,
 # `utf16`, `big5`, and `shiftjis`. These values are not case sensitive.
 # @result Returns 0 upon success, or a system standard error number `EINVAL`.
@@ -676,7 +676,7 @@ SetConfigCallback = CFUNC(ct.c_bool,
     ("tidySetConfigCallback", dll), (
     (1, "tdoc"),
     (1, "pConfigCallback"),))
-    
+
 # This typedef represents the required signature for your provided callback
 # function should you wish to register one with tidySetConfigChangeCallback().
 # Your callback function will be provided with the following parameters.
@@ -842,7 +842,7 @@ OptGetCategory = CFUNC(TidyConfigCategory,
     ("tidyOptGetCategory", dll), (
     (1, "opt"),))
 
-# Get default value of given Option as a string 
+# Get default value of given Option as a string
 # @param opt An instance of a TidyOption to query.
 # @result A string indicating the default value of the specified option.
 #
@@ -851,7 +851,7 @@ OptGetDefault = CFUNC(ctmbstr,
     ("tidyOptGetDefault", dll), (
     (1, "opt"),))
 
-# Get default value of given Option as an unsigned integer 
+# Get default value of given Option as an unsigned integer
 # @param opt An instance of a TidyOption to query.
 # @result An unsigned integer indicating the default value of the specified
 #         option.
@@ -861,7 +861,7 @@ OptGetDefaultInt = CFUNC(ct.c_ulong,
     ("tidyOptGetDefaultInt", dll), (
     (1, "opt"),))
 
-# Get default value of given Option as a Boolean value 
+# Get default value of given Option as a Boolean value
 # @param opt An instance of a TidyOption to query.
 # @result A boolean indicating the default value of the specified option.
 #
@@ -873,7 +873,7 @@ OptGetDefaultBool = CFUNC(ct.c_bool,
 # Initiates an iterator for a list of TidyOption pick-list values, which
 # allows you iterate through all of the available option values. In order to
 # iterate through the available values, initiate the iterator with this
-# function, and then use tidyOptGetNextPick() to retrieve the first and 
+# function, and then use tidyOptGetNextPick() to retrieve the first and
 # subsequent option values. For example:
 # @code{.c}
 #   TidyIterator itOpt = tidyOptGetPickList( opt );
@@ -1028,7 +1028,7 @@ OptResetToSnapshot = CFUNC(ct.c_bool,
     ("tidyOptResetToSnapshot", dll), (
     (1, "tdoc"),))
 
-# Any settings different than default? 
+# Any settings different than default?
 # @param tdoc The tidy document to check.
 # @result Returns a bool indicating whether or not a difference exists.
 #
@@ -1084,7 +1084,7 @@ OptGetCurrPick = CFUNC(ctmbstr,
 
 # Initiates an iterator for a list of user-declared tags, including autonomous
 # custom tags detected in the document if @ref TidyUseCustomTags is not set to
-# **no**. This iterator allows you to iterate through all of the custom tags. 
+# **no**. This iterator allows you to iterate through all of the custom tags.
 # In order to iterate through the tags, initiate the iterator with this
 # function, and then use tidyOptGetNextDeclTag() to retrieve the first and
 # subsequent tags. For example:
@@ -1105,8 +1105,8 @@ OptGetDeclTagList = CFUNC(TidyIterator,
 
 # Given a valid TidyIterator initiated with tidyOptGetDeclTagList(), returns a
 # string representing a user-declared or autonomous custom tag.
-# @remark Specifying optId limits the scope of the tags to one of 
-#         @ref TidyInlineTags, @ref TidyBlockTags, @ref TidyEmptyTags, or 
+# @remark Specifying optId limits the scope of the tags to one of
+#         @ref TidyInlineTags, @ref TidyBlockTags, @ref TidyEmptyTags, or
 #         @ref TidyPreTags. Note that autonomous custom tags (if used) are
 #         added to one of these option types, depending on the value of
 #         @ref TidyUseCustomTags.
@@ -1183,7 +1183,7 @@ OptGetMutedMessageList = CFUNC(TidyIterator,
 OptGetNextMutedMessage = CFUNC(ctmbstr,
     TidyDoc,                    # The tidy document to query.
     ct.POINTER(TidyIterator))(  # The TidyIterator (initiated with
-                                # tidyOptGetMutedMessageList()) token. 
+                                # tidyOptGetMutedMessageList()) token.
     ("tidyOptGetNextMutedMessage", dll), (
     (1, "tdoc"),
     (1, "iter"),))
@@ -1243,10 +1243,10 @@ OptGetNextDocLinks = CFUNC(TidyOption,
 # **************************************************************************** #
 # @defgroup IO I/O and Messages
 #
-# Tidy provides flexible I/O. By default, Tidy will define, create and use 
+# Tidy provides flexible I/O. By default, Tidy will define, create and use
 # instances of input and output handlers for standard C buffered I/O (i.e.,
 # `FILE* stdin`, `FILE* stdout`, and `FILE* stderr` for content input,
-# content output and diagnostic output, respectively. A `FILE* cfgFile` 
+# content output and diagnostic output, respectively. A `FILE* cfgFile`
 # input handler will be used for config files. Command line options will
 # just be set directly.
 #
@@ -1362,7 +1362,7 @@ class TidyOutputSink(ct.Structure):
     ("putByte",  TidyPutByteFunc),  # Pointer to "put byte" callback
 ]
 
-# Facilitates user defined sinks by providing an entry point to marshal 
+# Facilitates user defined sinks by providing an entry point to marshal
 # pointers-to-functions. This is needed by .NET, and possibly other language
 # bindings.
 # @result Returns a bool indicating success or failure.
@@ -1411,13 +1411,13 @@ GetEmacsFile = CFUNC(ctmbstr,
     TidyDoc)(
     ("tidyGetEmacsFile", dll), (
     (1, "tdoc"),))
-    
+
 # @}
 # @name Error Sink
 # Send Tidy's output to any of several destinations with these functions.
 # @{
 
-# Set error sink to named file. 
+# Set error sink to named file.
 # @result Returns a file handle.
 #
 SetErrorFile = CFUNC(ct.POINTER(FILE),
@@ -1427,7 +1427,7 @@ SetErrorFile = CFUNC(ct.POINTER(FILE),
     (1, "tdoc"),
     (1, "errfilnam"),))
 
-# Set error sink to given buffer. 
+# Set error sink to given buffer.
 # @result Returns 0 upon success or a standard error number.
 #
 SetErrorBuffer = CFUNC(ct.c_int,
@@ -1558,7 +1558,7 @@ SetMessageCallback = CFUNC(ct.c_bool,
     (1, "filtCallback"),))
 
 # @name TidyMessageCallback API
-# When using `TidyMessageCallback` you will be supplied with a TidyMessage 
+# When using `TidyMessageCallback` you will be supplied with a TidyMessage
 # object, which is used as a token to be interrogated with the following
 # API before the callback returns.
 # @remark Upon returning from the callback, this object is destroyed so do
@@ -1566,7 +1566,7 @@ SetMessageCallback = CFUNC(ct.c_bool,
 #
 # @{
 
-# Get the tidy document this message comes from. 
+# Get the tidy document this message comes from.
 # @param tmessage Specify the message that you are querying.
 # @result Returns the TidyDoc that generated the message.
 #
@@ -1858,7 +1858,7 @@ GetArgValueDouble = CFUNC(ct.c_double,
 # by using this provided callback. It relates where something in the source
 # document ended up in the output.
 # @{
-    
+
 # This typedef represents the required signature for your provided callback
 # function should you wish to register one with tidySetMessageCallback().
 # Your callback function will be provided with the following parameters.
@@ -1978,7 +1978,7 @@ CleanAndRepair = CFUNC(ct.c_int,
     ("tidyCleanAndRepair", dll), (
     (1, "tdoc"),))
 
-# Reports the document type and diagnostic statistics on parsed and repaired 
+# Reports the document type and diagnostic statistics on parsed and repaired
 # markup. You must call tidyCleanAndRepair() before using this function.
 # @param tdoc The tidy document to use.
 # @result An integer representing the status.
@@ -2093,14 +2093,14 @@ OptSaveSink = CFUNC(ct.c_int,
 # @defgroup Tree Document Tree
 #
 # A parsed (and optionally repaired) document is represented by Tidy as a
-# tree, much like a W3C DOM. This tree may be traversed using these 
+# tree, much like a W3C DOM. This tree may be traversed using these
 # functions. The following snippet gives a basic idea how these functions
 # can be used.
 #
 # @code{.c}
 # void dumpNode( TidyNode tnod, int indent ) {
 #   TidyNode child;
-# 
+#
 #   for ( child = tidyGetChild(tnod); child; child = tidyGetNext(child) ) {
 #     ctmbstr name;
 #     switch ( tidyNodeGetType(child) ) {
@@ -2115,7 +2115,7 @@ OptSaveSink = CFUNC(ct.c_int,
 #     case TidyNode_Jste:       name = "JSTE";                    break;
 #     case TidyNode_Php:        name = "PHP";                     break;
 #     case TidyNode_XmlDecl:    name = "XML Declaration";         break;
-# 
+#
 #     case TidyNode_Start:
 #     case TidyNode_End:
 #     case TidyNode_StartEnd:
@@ -2128,11 +2128,11 @@ OptSaveSink = CFUNC(ct.c_int,
 #     dumpNode( child, indent + 4 );
 #   }
 # }
-# 
+#
 # void dumpDoc( TidyDoc tdoc ) {
 #   dumpNode( tidyGetRoot(tdoc), 0 );
 # }
-# 
+#
 # void dumpBody( TidyDoc tdoc ) {
 #   dumpNode( tidyGetBody(tdoc), 0 );
 # }
@@ -2547,7 +2547,7 @@ GetLanguage = CFUNC(ctmbstr)(
 #
 class _tidyLocaleMapItem(ct.Structure): pass #{ int _opaque; }
 tidyLocaleMapItem = ct.POINTER(_tidyLocaleMapItem)
-    
+
 # Initiates an iterator for a list of Tidy's Windows<->POSIX locale mappings.
 # This iterator allows you to iterate through this list. In order to
 # iterate through the list, initiate the iterator with this function, and then
