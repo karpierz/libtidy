@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Adam Karpierz
+# Copyright (c) 2025 Adam Karpierz
 # SPDX-License-Identifier: HTMLTIDY
 
 include README.rst
@@ -6,8 +6,6 @@ include CHANGES.rst
 include LICENSE
 include pyproject.toml
 include .readthedocs.yml
-
-prune arch
 
 graft docs
 
@@ -17,9 +15,10 @@ global-exclude examples/**/*.nok
 
 graft src
 prune src/libtidy/libtidy.h
+prune src/libtidy/console.c
 
 graft tests
-prune tests/tests.c
+prune tests/regression_testing.rb
 global-exclude tests/**/*.nok
 
 global-exclude \#* \#*/**

@@ -14,7 +14,7 @@ try:
     from ...__config__ import config
     DLL_PATH = config.get("LIBTIDY", None)
     del config
-    if DLL_PATH is None or DLL_PATH in ("", "None"):
+    if DLL_PATH is None or DLL_PATH in ("", "None"):  # pragma: no cover
         raise ImportError()
 except ImportError:
     DLL_PATH = os.path.join(arch_dir, "tidy.dll")
@@ -22,7 +22,7 @@ except ImportError:
 from ctypes import WinDLL as DLL  # noqa: E402,N814
 try:
     from _ctypes import FreeLibrary as dlclose  # noqa: E402,N813
-except ImportError:
+except ImportError:  # pragma: no cover
     dlclose = lambda handle: 0
 from ctypes import WINFUNCTYPE as CFUNC  # noqa: E402
 

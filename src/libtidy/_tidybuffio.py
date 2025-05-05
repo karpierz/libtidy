@@ -23,6 +23,7 @@ import ctypes as ct
 from ._platform import CFUNC
 from ._dll      import dll
 
+from ._tidyplatform import byte
 from ._tidyplatform import *  # noqa
 from ._tidy import TidyBuffer, TidyAllocator, TidyInputSource, TidyOutputSink
 
@@ -149,9 +150,9 @@ BufUngetByte = CFUNC(None,
     (1, "buf"),
     (1, "bv"),))
 
-#*************#
-#   TIDY      #
-#*************#
+# ************* #
+#    TIDY       #
+# ************* #
 
 # Initialize a buffer input source
 InitInputBuffer = CFUNC(None,

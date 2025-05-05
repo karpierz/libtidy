@@ -65,7 +65,7 @@ Installation
 
 Prerequisites:
 
-+ Python 3.9 or higher
++ Python 3.10 or higher
 
   * https://www.python.org/
   * with C libtidy 5.9.14 is a primary test environment.
@@ -127,7 +127,7 @@ Authors
 
 .. |package| replace:: libtidy
 .. |package_bold| replace:: **libtidy**
-.. |copyright| replace:: Copyright (c) 2024-2024 Adam Karpierz
+.. |copyright| replace:: Copyright (c) 2024-2025 Adam Karpierz
 .. |respository| replace:: https://github.com/karpierz/libtidy.git
 .. _Development page: https://github.com/karpierz/libtidy
 .. _PyPI record: https://pypi.org/project/libtidy/
