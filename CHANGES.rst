@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.9.14b2 (2025-05-15)
+---------------------
+- The distribution is now created using 'build' instead of 'setuptools'.
+- Setup (dependencies) update (due to regressions in tox and setuptools).
+
 5.9.14b1 (2025-05-05)
 ---------------------
 - Add support for Python 3.14
