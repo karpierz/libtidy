@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E305
+
 # **************************************************************************** #
 # @file
 # Platform specific definitions, specifics, and headers. This file is
@@ -243,7 +245,7 @@ null = ct.c_void_p(None)
 # list or other collection.
 #
 class _TidyIterator(ct.Structure): pass  # { int _opaque; }
-TidyIterator = ct.POINTER(_TidyIterator)  # noqa: E305
+TidyIterator = ct.POINTER(_TidyIterator)
 
 del ct, defined, platform
 

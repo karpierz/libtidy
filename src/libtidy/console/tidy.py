@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Tuple, List, Callable
+from typing import Tuple, List, Callable
 import sys
 import os
 import atexit
@@ -31,7 +31,7 @@ from enum import IntEnum, auto
 from dataclasses import dataclass
 
 import libtidy as tidy
-from libtidy import TidyDoc, TidyNode, TidyIterator, TidyBuffer, TidyOption
+from libtidy import TidyDoc, TidyIterator, TidyBuffer, TidyOption
 from libtidy._platform import defined, is_windows, is_linux, is_macos
 if is_windows: from libtidy._platform._windows import _win32 as win32
 
@@ -480,8 +480,7 @@ class Tidy:
 
     def out_of_memory():
         """Exits with an error in the event of an out of memory condition."""
-        print("%s" %
-              tidy.LocalizedString(tidy.TC_STRING_OUT_OF_MEMORY).decode("utf-8"),
+        print(tidy.LocalizedString(tidy.TC_STRING_OUT_OF_MEMORY).decode("utf-8"),
               end="", file=sys.stderr)
         sys.exit(1)
 
@@ -695,7 +694,7 @@ class Tidy:
 
             name  = tidy.LocalizedString(self.cmdopt_catname[categ]["key"]).decode("utf-8")
             width = min(self.HELP_WIDTH, len(name))
-            print("%s" % name)
+            print(name)
             print("%*.*s" % (width, width, self.HELP_ULINE))
 
             # Tidy's "standard" 78-column output was always 25:52 ratio, so let's
@@ -1124,7 +1123,7 @@ class Tidy:
             if format is not None:
                 print(format % item, end="")
             else:
-                print("%s" % item)
+                print(item)
 
     # @} end service_lang_help group
 

@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E305,F401
+
 # Copyright (c) 2024 Adam Karpierz
 # SPDX-License-Identifier: HTMLTIDY
 
@@ -43,4 +45,4 @@ SetConsoleOutputCP = windll.kernel32.SetConsoleOutputCP
 SetConsoleOutputCP.restype  = BOOL
 SetConsoleOutputCP.argytpes = [UINT]
 
-del ctypes  # noqa: E305
+del ctypes

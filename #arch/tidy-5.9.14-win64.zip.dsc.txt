@@ -1,0 +1,8 @@
+Url:       https://github.com/htacg/tidy-html5/releases/download/5.9.14-next/tidy-5.9.14-win64.zip
+Url redir: https://objects.githubusercontent.com/github-production-release-asset-2e65be/2793788/b2f6f213-ea47-4da5-a146-22ba2a9d496c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241009%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241009T152549Z&X-Amz-Expires=300&X-Amz-Signature=19c5f12e382d2623ff0ce0af91e6e6e31eaab131533a39630bfefb3ea25a10b4&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dtidy-5.9.14-win64.zip&response-content-type=application%2Foctet-stream
+Completed: 2024-10-09 17:25:51
+File name: tidy-5.9.14-win64.zip
+File date: Tue, 07 Dec 2021 15:11:35 GMT
+File size: 1369267
+SHA256sum: D8444D7559E57CD512E6B2A138BDBE6C5C82319D636F1BA570F2BAE44CECDCEE
+SHA1sum:   2F9F21FE76D6CD24817302243542D329A913D3A7

@@ -1,0 +1,8 @@
+Url:       https://github.com/htacg/tidy-html5/archive/refs/tags/5.9.14-next.zip
+Url redir: https://codeload.github.com/htacg/tidy-html5/zip/refs/tags/5.9.14-next
+Completed: 2024-10-09 18:55:09
+File name: tidy-html5-5.9.14-next.zip
+File date: 2024-10-09 18:55:09
+File size: 1685552
+SHA256sum: C7FAD7EE9881BB11DED89886EFB2387340210FE653963ECD4DC782BF3BDA7D44
+SHA1sum:   53CA4E1BC68FEDF865044DD892AD243F1DFB3735

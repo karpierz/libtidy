@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.9.14b3 (2025-06-30)
+---------------------
+- Better code linting.
+- Setup (dependencies) update.
+
 5.9.14b2 (2025-05-15)
 ---------------------
 - The distribution is now created using 'build' instead of 'setuptools'.

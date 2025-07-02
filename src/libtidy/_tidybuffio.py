@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E305
+
 # **************************************************************************** #
 # @file
 # Treat buffer as a stream that Tidy can use for I/O operations. It offers
